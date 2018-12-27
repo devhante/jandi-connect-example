@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from myapp.models import Data
-from myapp.models import Readonly
+from myapp.models import Echo
 from myapp.serializers import DataSerializer
-from myapp.serializers import ReadonlySerializer
+from myapp.serializers import EchoSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -33,14 +33,14 @@ class DataList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class Readonly(APIView):
+class EchoList(APIView):
     def get(self, request, format=None):
-        readonly = Readonly.objects.all()
-        serializer = ReadonlySerializer(readonly, many=True)
+        echos = Echo.objects.all()
+        serializer = EchoSerializer(echos, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = ReadonlySerializer(data=request.data)
+        serializer = EchoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

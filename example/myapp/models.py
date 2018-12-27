@@ -10,7 +10,7 @@ class Data(models.Model):
     createdAt = models.CharField(max_length=50)
 
 
-class Readonly(models.Model):
+class Echo(models.Model):
     token = models.CharField(max_length=50)
     teamName = models.CharField(max_length=50)
     roomName = models.CharField(max_length=50)

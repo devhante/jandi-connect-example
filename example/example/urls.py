@@ -21,7 +21,7 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('datas/', views.DataList.as_view()),
-    path('readonly/', views.Readonly.as_view()),
+    path('echos/', views.EchoList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

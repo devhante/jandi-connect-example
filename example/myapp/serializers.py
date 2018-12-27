@@ -1,5 +1,5 @@
 from myapp.models import Data
-from myapp.models import Readonly
+from myapp.models import Echo
 from rest_framework import serializers
 
 
@@ -8,7 +8,7 @@ class DataSerializer(serializers.HyperlinkedModelSerializer):
         model = Data
         fields = ('token', 'teamName', 'roomName', 'writerName', 'text', 'keyword', 'createdAt')
 
-class ReadonlySerializer(serializers.HyperlinkedModelSerializer):
+class EchoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Readonly
+        model = Echo
         fields = ('token', 'teamName', 'roomName', 'writerName', 'text', 'keyword', 'createdAt')
