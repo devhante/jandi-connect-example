@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Data(models.Model):
     token = models.CharField(max_length=50)
     teamName = models.CharField(max_length=50)
