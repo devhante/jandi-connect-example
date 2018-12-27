@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from myapp.models import Data
+from myapp.models import Readonly
 from myapp.serializers import DataSerializer
+from myapp.serializers import ReadonlySerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -33,12 +35,12 @@ class DataList(APIView):
 
 class Readonly(APIView):
     def get(self, request, format=None):
-        readonly = Data.objects.all()
-        serializer = DataSerializer(readonly, many=True)
+        readonly = Readonly.objects.all()
+        serializer = ReadonlySerializer(readonly, many=True)
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = DataSerializer(data=request.data)
+        serializer = ReadonlySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
